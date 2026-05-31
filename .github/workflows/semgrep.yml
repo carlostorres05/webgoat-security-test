@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+      - prueba-semgrep
+
+pull_request:
+  branches:
+    - main
 
 jobs:
   semgrep:
@@ -19,5 +21,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run Semgrep OWASP Top Ten
-        run: semgrep scan --config=p/owasp-top-ten .
+      - name: Run Semgrep
+        run: |
+          semgrep scan --config=p/owasp-top-ten --error .
